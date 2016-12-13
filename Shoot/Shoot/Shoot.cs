@@ -12,6 +12,8 @@ namespace Shoot
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        MainGame mainGame;
+
         public Shoot()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -27,7 +29,7 @@ namespace Shoot
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            mainGame = new MainGame();
             base.Initialize();
         }
 
@@ -40,6 +42,7 @@ namespace Shoot
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            mainGame.Load(Content, spriteBatch);
             // TODO: use this.Content to load your game content here
         }
 
@@ -50,6 +53,7 @@ namespace Shoot
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+            mainGame.UnLoad();
         }
 
         /// <summary>
@@ -63,6 +67,7 @@ namespace Shoot
                 Exit();
 
             // TODO: Add your update logic here
+            mainGame.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -76,6 +81,7 @@ namespace Shoot
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            mainGame.Draw();
 
             base.Draw(gameTime);
         }
