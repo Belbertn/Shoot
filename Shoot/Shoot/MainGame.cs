@@ -9,6 +9,8 @@ namespace Shoot
         public ContentManager Content { get; private set; }
         public SpriteBatch Batch { get; private set; }
 
+        public IEntity entities { get; private set; }
+
         public void Load(ContentManager content, SpriteBatch spriteBatch)
         {
             Content = content;
