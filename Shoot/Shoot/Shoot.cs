@@ -30,7 +30,11 @@ namespace Shoot
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
             mainGame = new MainGame();
+            mainGame.Initialize(Content, spriteBatch);
             base.Initialize();
         }
 
@@ -40,10 +44,9 @@ namespace Shoot
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            
 
-            mainGame.Load(Content, spriteBatch);
+            mainGame.Load();
             // TODO: use this.Content to load your game content here
         }
 

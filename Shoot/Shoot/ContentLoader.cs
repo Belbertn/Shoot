@@ -14,6 +14,7 @@ namespace Shoot
 
         public void Initialize(ContentManager Content)
         {
+            Sprites = new Dictionary<string,Texture2D>();
             content = Content;
         }
 
@@ -45,7 +46,7 @@ namespace Shoot
 
         private string[] ReadFile(string TextFile)
         {
-            string[] lines = File.ReadAllLines(TextFile);
+            string[] lines = File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, TextFile));
 
             return lines;
         }

@@ -7,21 +7,27 @@ namespace Shoot
 {
     public class MainGame
     {
-        public ContentManager Content { get; private set; }
         public SpriteBatch Batch { get; private set; }
-
+        
+        public ContentLoader Loader { get; private set; }
         public List<IEntity> entities { get; private set; }
 
-        public void Load(ContentManager content, SpriteBatch spriteBatch)
+        public void Initialize(ContentManager content, SpriteBatch spriteBatch)
         {
+            Loader = new ContentLoader();
+            Loader.Initialize(content);
             entities = new List<IEntity>();
-            
-            Content = content;
+
             Batch = spriteBatch;
+        }
+
+        public void Load()
+        {
+            Loader.LoadAssets("Level1_Texture_List.txt");
 
             foreach(IEntity entity in entities)
             {
-                entity.Load(Content);
+                entity.Load();
             }
         }
 
