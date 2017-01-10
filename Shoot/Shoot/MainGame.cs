@@ -14,6 +14,8 @@ namespace Shoot
 
         public void Load(ContentManager content, SpriteBatch spriteBatch)
         {
+            entities = new List<IEntity>();
+            
             Content = content;
             Batch = spriteBatch;
 
