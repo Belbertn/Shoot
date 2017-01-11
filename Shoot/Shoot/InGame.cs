@@ -22,10 +22,11 @@ namespace Shoot
 
         public void Load()
         {
-
+            Loader.LoadAssets(AssetList.Level1);
+            entities.Add(new Player());
             foreach (IEntity entity in entities)
             {
-                entity.Load();
+                entity.Load(Loader);
             }
         }
 
