@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AssetList.cs" />
     <Compile Include="ContentLoader.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="MainGame.cs" />

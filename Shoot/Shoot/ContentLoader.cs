@@ -22,19 +22,29 @@ namespace Shoot
         {
             string[] lines = ReadFile(filename);
 
-            if(filename.Contains("Texture"))
+            if (filename.Contains("Texture"))
             {
                 LoadSprites(lines);
             }
         }
 
+        public void UnLoadAssets(string filename)
+        {
+            string[] lines = ReadFile(filename);
+
+            if (filename.Contains("Texture"))
+            {
+                UnLoadSprites(lines);
+            }
+        }
+
         public Texture2D GetSprite(string name)
         {
-            if(Sprites.ContainsKey("name"))
+            if (Sprites.ContainsKey(name))
             {
-                return Sprites["name"];
+                return Sprites[name];
             }
-            else if(Sprites.Count <= 0)
+            else if (Sprites.Count <= 0)
             {
                 throw new System.ArgumentException("Dictionary is empty at this time. Maybe it's not finished loading");
             }
@@ -53,9 +63,17 @@ namespace Shoot
         
         private void LoadSprites(string[] lines)
         {
-            for(int i = 0; i < lines.Length; i++)
+            for (int i = 0; i < lines.Length; i++)
             {
                 Sprites.Add(lines[i], content.Load<Texture2D>(lines[i]));
+            }
+        }
+
+        private void UnLoadSprites(string[] lines)
+        {
+            for (int i = 0; i < lines.Length; i++)
+            {
+                Sprites.Remove(lines[i]);
             }
         }
     }

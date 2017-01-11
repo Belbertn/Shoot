@@ -23,9 +23,9 @@ namespace Shoot
 
         public void Load()
         {
-            Loader.LoadAssets("Level1_Texture_List.txt");
+            
 
-            foreach(IEntity entity in entities)
+            foreach (IEntity entity in entities)
             {
                 entity.Load();
             }
@@ -38,7 +38,7 @@ namespace Shoot
 
         public void Update(GameTime gameTime)
         {
-            foreach(IEntity entity in entities)
+            foreach (IEntity entity in entities)
             {
                 entity.Update(gameTime);
             }
@@ -47,7 +47,7 @@ namespace Shoot
         public void Draw()
         {
             Batch.Begin();
-            foreach(IEntity entity in entities)
+            foreach (IEntity entity in entities)
             {
                 entity.Draw(Batch);
             }
