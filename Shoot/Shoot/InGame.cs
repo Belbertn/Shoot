@@ -14,7 +14,6 @@ namespace Shoot
 
         public void Initialize(ContentLoader loader, SpriteBatch spriteBatch)
         {
-            Console.WriteLine("Helkl");
             Loader = loader;
             Batch = spriteBatch;
 
