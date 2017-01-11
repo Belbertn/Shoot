@@ -6,29 +6,23 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Shoot
 {
     public class MainGame
-    {
-        public SpriteBatch Batch { get; private set; }
-        
+    {   
         public ContentLoader Loader { get; private set; }
-        public List<IEntity> entities { get; private set; }
+
+        public IGameState gameState { get; private set; }
 
         public void Initialize(ContentManager content, SpriteBatch spriteBatch)
         {
             Loader = new ContentLoader();
             Loader.Initialize(content);
-            entities = new List<IEntity>();
-
-            Batch = spriteBatch;
+            
+            gameState = new InGame();
+            gameState.Initialize(Loader, spriteBatch);
         }
 
         public void Load()
         {
-            
-
-            foreach (IEntity entity in entities)
-            {
-                entity.Load();
-            }
+            gameState.Load();
         }
 
         public void UnLoad()
@@ -38,20 +32,12 @@ namespace Shoot
 
         public void Update(GameTime gameTime)
         {
-            foreach (IEntity entity in entities)
-            {
-                entity.Update(gameTime);
-            }
+            gameState.Update(gameTime);
         }
 
         public void Draw()
         {
-            Batch.Begin();
-            foreach (IEntity entity in entities)
-            {
-                entity.Draw(Batch);
-            }
-            Batch.End();
+            gameState.Draw();
         }
     }
 }
