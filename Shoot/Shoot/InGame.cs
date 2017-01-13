@@ -7,15 +7,15 @@ namespace Shoot
 {
     public class InGame : IGameState
     {
-        public SpriteBatch Batch { get; private set; }
+        public SpriteBatch spriteBatch;
         public ContentLoader Loader { get; private set; }
 
         public List<IEntity> entities { get; private set; }
 
-        public void Initialize(ContentLoader loader, SpriteBatch spriteBatch)
+        public void Initialize(ContentLoader loader, SpriteBatch Batch)
         {
             Loader = loader;
-            Batch = spriteBatch;
+            spriteBatch = Batch;
 
             entities = new List<IEntity>();
         }
@@ -40,12 +40,12 @@ namespace Shoot
 
         public void Draw()
         {
-            Batch.Begin();
+            spriteBatch.Begin();
             foreach (IEntity entity in entities)
             {
-                entity.Draw(Batch);
+                entity.Draw(spriteBatch);
             }
-            Batch.End();
+            spriteBatch.End();
         }
     }
 }
