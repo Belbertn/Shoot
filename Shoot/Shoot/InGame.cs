@@ -9,6 +9,7 @@ namespace Shoot
     {
         public SpriteBatch spriteBatch;
         public ContentLoader Loader { get; private set; }
+        public Map Level { get; private set; }
 
         public List<IEntity> entities { get; private set; }
 
@@ -18,11 +19,16 @@ namespace Shoot
             spriteBatch = Batch;
 
             entities = new List<IEntity>();
+
+            Level = new Map();
+            Level.Initialize(Loader, spriteBatch);
         }
 
         public void Load()
         {
             Loader.LoadAssets(AssetList.Level1);
+
+            Level.Load();
             
             foreach (IEntity entity in entities)
             {
@@ -32,6 +38,8 @@ namespace Shoot
 
         public void Update(GameTime gameTime)
         {
+            Level.Update(gameTime);
+
             foreach (IEntity entity in entities)
             {
                 entity.Update(gameTime);
@@ -41,6 +49,8 @@ namespace Shoot
         public void Draw()
         {
             spriteBatch.Begin();
+            Level.Draw();
+            
             foreach (IEntity entity in entities)
             {
                 entity.Draw(spriteBatch);
