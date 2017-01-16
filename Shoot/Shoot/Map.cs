@@ -51,8 +51,23 @@ namespace Shoot
                     if (int.Parse(cells[j]) != 0)
                     {
                         Tile temp = new Tile();
-                        temp.Position = new Vector2(j * 32, i * 32);
-                        temp.Texture = contentLoader.GetSprite("TempTile");
+
+                        switch (int.Parse(cells[j]))
+                        {
+                            case 1:
+                            temp.Texture = contentLoader.GetSprite("TempGrass");
+                            break;
+
+                            case 2:
+                            temp.Texture = contentLoader.GetSprite("TempDirt");
+                            break;
+                        }
+
+                        temp.Position = new Vector2(j * temp.Texture.Width, i * temp.Texture.Height);
+                        temp.CollisionRectangle = new Rectangle((int)temp.Position.X, 
+                                                                (int)temp.Position.Y,
+                                                                temp.Texture.Width,
+                                                                temp.Texture.Height);
 
                         level.Add(temp);
                     }

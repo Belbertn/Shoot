@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="PhysicsWorld.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Player.cs" />
