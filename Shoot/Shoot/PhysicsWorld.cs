@@ -6,10 +6,11 @@ namespace Shoot
 {
     public class PhysicsWorld
     {
+        public static List<IEntity> StaticEntities { get; private set; }
 
-        public void Initialize()
+        public void Initialize(ref List<IEntity> entities)
         {
-
+            StaticEntities = entities;
         }
 
         public void Load()
@@ -20,6 +21,11 @@ namespace Shoot
         public void Update()
         {
             
+        }
+
+        public static void AddStaticEntity(IEntity entity)
+        {
+            StaticEntities.Add(entity);
         }
     }
 }

@@ -64,10 +64,7 @@ namespace Shoot
                         }
 
                         temp.Position = new Vector2(j * temp.Texture.Width, i * temp.Texture.Height);
-                        temp.CollisionRectangle = new Rectangle((int)temp.Position.X, 
-                                                                (int)temp.Position.Y,
-                                                                temp.Texture.Width,
-                                                                temp.Texture.Height);
+                        temp.Load(contentLoader);
 
                         level.Add(temp);
                     }
