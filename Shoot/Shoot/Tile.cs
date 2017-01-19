@@ -16,8 +16,7 @@ namespace Shoot
                                             (int)Position.Y,
                                             Texture.Width,
                                             Texture.Height);
-                                
-            PhysicsWorld.AddStaticEntity(this);
+
         }
 
         public void Update(GameTime gameTime)
