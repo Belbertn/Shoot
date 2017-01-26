@@ -7,7 +7,7 @@ namespace Shoot
     public class CollisionWorld
     {
 
-        public void Initialize(ref List<IEntity> entities)
+        public void Initialize()
         {
 
         }
