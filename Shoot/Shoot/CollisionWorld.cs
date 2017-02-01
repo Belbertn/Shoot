@@ -6,7 +6,7 @@ namespace Shoot
 {
     public class CollisionWorld
     {
-
+        private List<CollisionActor> actors;
         public void Initialize()
         {
 
