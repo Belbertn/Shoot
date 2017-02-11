@@ -6,7 +6,7 @@ namespace Shoot
 {
     public class CollisionWorld
     {
-        private List<CollisionActor> actors;
+        private static List<CollisionActor> actors;
         public void Initialize()
         {
 
@@ -20,6 +20,11 @@ namespace Shoot
         public void Update()
         {
             
+        }
+
+        public static void AddActor(CollisionActor actor)
+        {
+            actors.Add(actor);
         }
     }
 }
