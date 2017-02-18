@@ -16,5 +16,12 @@ namespace Shoot
         {
             rectangle = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
         }
+
+        public void Update(GameTime gameTime)
+        {
+            Position *= velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            
+            rectangle = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
+        }
     }
 }
