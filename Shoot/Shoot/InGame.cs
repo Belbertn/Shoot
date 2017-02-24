@@ -10,6 +10,7 @@ namespace Shoot
         public SpriteBatch spriteBatch;
         public ContentLoader Loader { get; private set; }
         public Map Level { get; private set; }
+        public CollisionWorld World { get; private set; }
 
         public List<IEntity> Entities { get; private set; }
 
@@ -18,15 +19,21 @@ namespace Shoot
             Loader = loader;
             spriteBatch = Batch;
 
-            Entities = new List<IEntity>();
+            World = new CollisionWorld();
+            World.Initialize();
 
             Level = new Map();
             Level.Initialize(Loader, spriteBatch);
+
+            Entities = new List<IEntity>();
+            Entities.Add(new Player());
         }
 
         public void Load()
         {
             Loader.LoadAssets(AssetList.Level1);
+
+            World.Load();
 
             Level.Load();
             
@@ -38,6 +45,8 @@ namespace Shoot
 
         public void Update(GameTime gameTime)
         {
+            World.Update(gameTime);
+
             Level.Update(gameTime);
 
             foreach (IEntity entity in Entities)

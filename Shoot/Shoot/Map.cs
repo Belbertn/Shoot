@@ -23,6 +23,7 @@ namespace Shoot
         public void Load()
         {
             LoadMap("Level1.txt");
+            
         }
 
         public void Update(GameTime gameTime)

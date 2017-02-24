@@ -7,6 +7,7 @@ namespace Shoot
     public class CollisionWorld
     {
         private static List<CollisionActor> actors;
+        private static List<CollisionObject> objects;
         public void Initialize()
         {
             actors = new List<CollisionActor>();
@@ -22,8 +23,7 @@ namespace Shoot
             foreach (CollisionActor actor in actors)
             {
                 actor.Update(gameTime);
-
-
+                CollisionCheck();
             }
 
             

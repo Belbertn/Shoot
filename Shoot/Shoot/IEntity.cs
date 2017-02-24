@@ -5,7 +5,6 @@ namespace Shoot
 {
     public interface IEntity
     {
-        Texture2D Texture { get; }
         Vector2 Position { get; set; }
 
         void Load(ContentLoader contentLoader);
