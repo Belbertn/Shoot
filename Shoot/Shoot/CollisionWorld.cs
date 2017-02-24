@@ -11,6 +11,7 @@ namespace Shoot
         public void Initialize()
         {
             actors = new List<CollisionActor>();
+            objects = new List<CollisionObject>();
         }
 
         public void Load()
@@ -35,9 +36,24 @@ namespace Shoot
             actors.Add(actor);
         }
 
+        public static void AddObject(CollisionObject colObject)
+        {
+            colObject.Inititalize();
+            objects.Add(colObject);
+        }
+
         private void CollisionCheck()
         {
-            
+            foreach (CollisionActor actor in actors)
+            {
+                foreach (CollisionObject obj in objects)
+                {
+                    if (actor.Rectangle.Intersects(obj.Rect))
+                    {
+                        
+                    }
+                }
+            }
         }
     }
 }
