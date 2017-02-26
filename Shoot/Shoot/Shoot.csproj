@@ -38,6 +38,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Projectile.cs" />
+    <Compile Include="ProjectileManager.cs" />
     <Compile Include="CollisionObject.cs" />
     <Compile Include="CollisionActor.cs" />
     <Compile Include="CollisionWorld.cs" />
