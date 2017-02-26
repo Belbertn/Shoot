@@ -49,26 +49,37 @@ namespace Shoot
                 {
                     if (actor.Rectangle.Intersects(obj.Rect))
                     {
-                        if (actor.Rectangle.Center.X < obj.Rect.Center.X)
+                        Rectangle overlap = Rectangle.Intersect(actor.Rectangle, obj.Rect);
+
+                        if (overlap.Width < overlap.Height)
                         {
-                            actor.Velocity = new Vector2(0, actor.Velocity.Y);
-                            actor.Position = new Vector2(actor.Position.X - 0.2f, actor.Position.Y);
+                            //Collision on Light
+                            if (actor.Rectangle.Left < obj.Rect.Left)
+                            {
+                                actor.Velocity = new Vector2(0, actor.Velocity.Y);
+                                actor.Position = new Vector2(actor.Position.X - overlap.Width, actor.Position.Y);
+                            }
+                            //Collision on Left
+                            if (actor.Rectangle.Right > obj.Rect.Right)
+                            {
+                                actor.Velocity = new Vector2(0, actor.Velocity.Y);
+                                actor.Position = new Vector2(actor.Position.X + overlap.Width, actor.Position.Y);
+                            }
                         }
-                        if (actor.Rectangle.Center.X > obj.Rect.Center.X)
+
+                        if (overlap.Height < overlap.Width)
                         {
-                            actor.Velocity = new Vector2(0, actor.Velocity.Y);
-                            actor.Position = new Vector2(actor.Position.X + 0.2f, actor.Position.Y);
-                        }
-                        if (actor.Rectangle.Center.Y < obj.Rect.Center.Y)
-                        {
-                            actor.Velocity = new Vector2(actor.Velocity.X, 0);
-                            actor.Position = new Vector2(actor.Position.X, actor.Position.Y - 0.2f);
-                        }
-                        if (actor.Rectangle.Center.Y > obj.Rect.Center.Y)
-                        {
-                            actor.Velocity = new Vector2(actor.Velocity.X, 0);
-                            actor.Position = new Vector2(actor.Position.X, actor.Position.Y + 0.2f);
-                        }
+                            if (actor.Rectangle.Top < obj.Rect.Top)
+                            {
+                                actor.Velocity = new Vector2(actor.Velocity.X, 0);
+                                actor.Position = new Vector2(actor.Position.X, actor.Position.Y - overlap.Height);
+                            }
+                            if (actor.Rectangle.Bottom > obj.Rect.Bottom)
+                            {
+                                actor.Velocity = new Vector2(actor.Velocity.X, 0);
+                                actor.Position = new Vector2(actor.Position.X, actor.Position.Y + overlap.Height);
+                            }
+                        }                       
                     }
                 }
             }

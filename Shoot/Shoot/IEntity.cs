@@ -7,6 +7,8 @@ namespace Shoot
     {
         Vector2 Position { get; set; }
 
+        Rectangle Hitbox { get; set; }
+
         void Load(ContentLoader contentLoader);
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);

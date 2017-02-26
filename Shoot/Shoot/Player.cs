@@ -8,6 +8,8 @@ namespace Shoot
     public class Player : IEntity
     {
         public Vector2 Position { get; set; }
+        public Rectangle Hitbox { get; set; }
+
         private const float SPEED = 5;
         private Texture2D texture;
         private ContentLoader loader;
@@ -21,19 +23,16 @@ namespace Shoot
 
             Position = new Vector2();
 
-            actor = new CollisionActor();
-            actor.Position = Position;
-            actor.Width = texture.Width;
-            actor.Height = texture.Height;
-
-            CollisionWorld.AddActor(actor);
+            ColliderSetUp();
         }
 
         public void Update(GameTime gameTime)
         {
-            Input();
-
             Position = actor.Position;
+
+            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height);
+
+            Input();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -63,6 +62,18 @@ namespace Shoot
                 actor.AddAcceleration(new Vector2(1, 0), SPEED);
             }
 
+        }
+
+        void ColliderSetUp()
+        {
+            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height);
+
+            actor = new CollisionActor();
+            actor.Position = Position;
+            actor.Width = texture.Width;
+            actor.Height = texture.Height;
+
+            CollisionWorld.AddActor(actor);
         }
     }
 }

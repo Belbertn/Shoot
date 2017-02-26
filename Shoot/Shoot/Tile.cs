@@ -8,6 +8,8 @@ namespace Shoot
     {
         public Vector2 Position { get; set; }
         public Texture2D Texture { get; set; }
+        public Rectangle Hitbox { get; set; }
+
         public CollisionObject colObject { get; set; }
 
         public void Load(ContentLoader contentLoader)
@@ -18,11 +20,13 @@ namespace Shoot
             colObject.Height = Texture.Height;
 
             CollisionWorld.AddObject(colObject);
+
+            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
         }
 
         public void Update(GameTime gameTime)
         {
-
+            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
         }
 
         public void Draw(SpriteBatch spriteBatch)
