@@ -53,7 +53,7 @@ namespace Shoot
 
                         if (overlap.Width < overlap.Height)
                         {
-                            //Collision on Light
+                            //Collision on Right
                             if (actor.Rectangle.Left < obj.Rect.Left)
                             {
                                 actor.Velocity = new Vector2(0, actor.Velocity.Y);
@@ -69,11 +69,13 @@ namespace Shoot
 
                         if (overlap.Height < overlap.Width)
                         {
+                            //Collision on Bottom
                             if (actor.Rectangle.Top < obj.Rect.Top)
                             {
                                 actor.Velocity = new Vector2(actor.Velocity.X, 0);
                                 actor.Position = new Vector2(actor.Position.X, actor.Position.Y - overlap.Height);
                             }
+                            //Collision on Top
                             if (actor.Rectangle.Bottom > obj.Rect.Bottom)
                             {
                                 actor.Velocity = new Vector2(actor.Velocity.X, 0);

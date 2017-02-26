@@ -10,7 +10,7 @@ namespace Shoot
         public Vector2 Position { get; set; }
         public Rectangle Hitbox { get; set; }
 
-        private const float SPEED = 5;
+        private const float SPEED = 40;
         private Texture2D texture;
         private ContentLoader loader;
 
@@ -40,7 +40,7 @@ namespace Shoot
             spriteBatch.Draw(texture, Position, Color.White);
         }
 
-        void Input()
+        private void Input()
         {
             KeyboardState keyState = Keyboard.GetState();
 
@@ -64,7 +64,7 @@ namespace Shoot
 
         }
 
-        void ColliderSetUp()
+        private void ColliderSetUp()
         {
             Hitbox = new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height);
 
