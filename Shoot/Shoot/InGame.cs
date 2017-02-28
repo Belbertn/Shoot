@@ -12,6 +12,8 @@ namespace Shoot
         public Map Level { get; private set; }
         public CollisionWorld World { get; private set; }
 
+        private ProjectileManager projectileManager = new ProjectileManager();
+
         public List<IEntity> Entities { get; private set; }
 
         public void Initialize(ContentLoader loader, SpriteBatch Batch)
@@ -25,8 +27,11 @@ namespace Shoot
             Level = new Map();
             Level.Initialize(Loader, spriteBatch);
 
+            projectileManager.Initialize();
+
             Entities = new List<IEntity>();
-            Entities.Add(new Player());
+
+            SetUpPlayers();
         }
 
         public void Load()
@@ -53,6 +58,8 @@ namespace Shoot
             {
                 entity.Update(gameTime);
             }
+
+            projectileManager.Update(gameTime);
         }
 
         public void Draw()
@@ -65,6 +72,13 @@ namespace Shoot
                 entity.Draw(spriteBatch);
             }
             spriteBatch.End();
+        }
+
+        private void SetUpPlayers()
+        {
+            Player temp = new Player();
+            Entities.Add(temp);
+            projectileManager.AddTargetToList(temp);
         }
     }
 }

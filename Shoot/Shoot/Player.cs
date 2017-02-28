@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Shoot
 {
-    public class Player : IEntity
+    public class Player : IEntity, IShootable
     {
         public Vector2 Position { get; set; }
         public Rectangle Hitbox { get; set; }
@@ -74,6 +74,11 @@ namespace Shoot
             actor.Height = texture.Height;
 
             CollisionWorld.AddActor(actor);
+        }
+
+        public void TakeDamage(int Damage)
+        {
+            
         }
     }
 }

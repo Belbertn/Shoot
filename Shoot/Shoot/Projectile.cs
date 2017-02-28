@@ -8,14 +8,26 @@ namespace Shoot
 
         public Vector2 Position { get; set; }
 
-        public void Initialize()
-        {
+        public int Damage { get; set; }
+        
+        private Vector2 velocity = new Vector2();
 
+        public void Initialize(Rectangle HitBox, Vector2 Position, Vector2 Direction, float Speed, int Damage)
+        {
+            hitbox = HitBox;
+            this.Position = Position;
+            
+            velocity = new Vector2();
+            velocity += Direction * Speed;
+
+            this.Damage = Damage;
         }
 
         public void Update(GameTime gameTime)
         {
+            Position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            hitbox = new Rectangle((int)Position.X, (int)Position.Y, hitbox.Width, hitbox.Height);
         }
     }
 }
