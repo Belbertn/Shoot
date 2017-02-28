@@ -25,9 +25,9 @@ namespace Shoot
             World.Initialize();
 
             Level = new Map();
-            Level.Initialize(Loader, spriteBatch);
+            Level.Initialize(spriteBatch);
 
-            projectileManager.Initialize();
+            projectileManager.Initialize(spriteBatch);
 
             Entities = new List<IEntity>();
 
@@ -44,7 +44,7 @@ namespace Shoot
             
             foreach (IEntity entity in Entities)
             {
-                entity.Load(Loader);
+                entity.Load();
             }
         }
 
@@ -66,6 +66,7 @@ namespace Shoot
         {
             spriteBatch.Begin();
             Level.Draw();
+            projectileManager.Draw();
             
             foreach (IEntity entity in Entities)
             {

@@ -12,7 +12,7 @@ namespace Shoot
 
         public CollisionObject colObject { get; set; }
 
-        public void Load(ContentLoader contentLoader)
+        public void Load()
         {
             colObject = new CollisionObject();
             colObject.Position = Position;

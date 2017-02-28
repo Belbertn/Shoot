@@ -10,13 +10,12 @@ namespace Shoot
     {
         public List<Tile> level { get; private set; }
 
-        private ContentLoader contentLoader;
         private SpriteBatch spriteBatch;
 
-        public void Initialize(ContentLoader loader, SpriteBatch Batch)
+        public void Initialize(SpriteBatch Batch)
         {
             level = new List<Tile>();
-            contentLoader = loader;
+
             spriteBatch = Batch;
         }
 
@@ -56,16 +55,16 @@ namespace Shoot
                         switch (int.Parse(cells[j]))
                         {
                             case 1:
-                            temp.Texture = contentLoader.GetSprite("TempGrass");
+                            temp.Texture = ContentLoader.GetSprite("TempGrass");
                             break;
 
                             case 2:
-                            temp.Texture = contentLoader.GetSprite("TempDirt");
+                            temp.Texture = ContentLoader.GetSprite("TempDirt");
                             break;
                         }
 
                         temp.Position = new Vector2(j * temp.Texture.Width, i * temp.Texture.Height);
-                        temp.Load(contentLoader);
+                        temp.Load();
 
                         level.Add(temp);
                     }

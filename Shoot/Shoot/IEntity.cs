@@ -9,7 +9,7 @@ namespace Shoot
 
         Rectangle Hitbox { get; set; }
 
-        void Load(ContentLoader contentLoader);
+        void Load();
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
     }

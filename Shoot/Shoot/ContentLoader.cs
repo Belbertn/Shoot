@@ -9,7 +9,7 @@ namespace Shoot
 {
     public class ContentLoader
     {
-        private Dictionary<string,Texture2D> Sprites { get; set; }
+        private static Dictionary<string,Texture2D> Sprites { get; set; }
         private ContentManager content;
 
         public void Initialize(ContentManager Content)
@@ -38,7 +38,7 @@ namespace Shoot
             }
         }
 
-        public Texture2D GetSprite(string name)
+        public static Texture2D GetSprite(string name)
         {
             if (Sprites.ContainsKey(name))
             {

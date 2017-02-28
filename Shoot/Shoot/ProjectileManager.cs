@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Shoot
 {
@@ -8,11 +10,10 @@ namespace Shoot
         private List<IShootable> targets = new List<IShootable>();
         private static List<Projectile> projectiles = new List<Projectile>();
 
-        public void Initialize()
+        private SpriteBatch spriteBatch;
+        public void Initialize(SpriteBatch spriteBatch)
         {
-            
-
-            
+            this.spriteBatch = spriteBatch;
         }
 
         public void Update(GameTime gameTime)
@@ -20,6 +21,14 @@ namespace Shoot
             foreach (Projectile proj in projectiles)
             {
                 proj.Update(gameTime);
+            }
+        }
+
+        public void Draw()
+        {
+            foreach (Projectile proj in projectiles)
+            {
+                proj.Draw(spriteBatch);
             }
         }
 

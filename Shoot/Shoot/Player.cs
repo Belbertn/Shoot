@@ -12,14 +12,14 @@ namespace Shoot
 
         private const float SPEED = 40;
         private Texture2D texture;
-        private ContentLoader loader;
 
         private CollisionActor actor;
 
-        public void Load(ContentLoader contentLoader)
-        {
-            loader = contentLoader;
-            texture = loader.GetSprite("hitman1_hold");
+        private int health = 100;
+
+        public void Load()
+        {       
+            texture = ContentLoader.GetSprite("hitman1_hold");
 
             Position = new Vector2();
 
@@ -62,6 +62,10 @@ namespace Shoot
                 actor.AddAcceleration(new Vector2(1, 0), SPEED);
             }
 
+            if (keyState.IsKeyDown(Keys.Space))
+            {
+                ProjectileManager.AddProjectile(Position, new Vector2(1, 0), 4, 10);
+            }
         }
 
         private void ColliderSetUp()
@@ -78,7 +82,7 @@ namespace Shoot
 
         public void TakeDamage(int Damage)
         {
-            
+            health -= Damage;
         }
     }
 }

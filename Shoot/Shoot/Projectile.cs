@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Shoot
 {
@@ -12,6 +13,8 @@ namespace Shoot
         
         private Vector2 velocity = new Vector2();
 
+        private Texture2D texture;
+
         public void Initialize(Rectangle HitBox, Vector2 Position, Vector2 Direction, float Speed, int Damage)
         {
             hitbox = HitBox;
@@ -21,6 +24,8 @@ namespace Shoot
             velocity += Direction * Speed;
 
             this.Damage = Damage;
+
+            texture = ContentLoader.GetSprite("Projectile_1");
         }
 
         public void Update(GameTime gameTime)
@@ -28,6 +33,11 @@ namespace Shoot
             Position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             hitbox = new Rectangle((int)Position.X, (int)Position.Y, hitbox.Width, hitbox.Height);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, Position, Color.White);
         }
     }
 }
