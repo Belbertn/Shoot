@@ -79,7 +79,7 @@ namespace Shoot
         {
             Player temp = new Player();
             Entities.Add(temp);
-            projectileManager.AddTargetToList(temp);
+            ProjectileManager.AddTargetToList(temp);
         }
     }
 }

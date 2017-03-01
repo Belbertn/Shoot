@@ -67,6 +67,8 @@ namespace Shoot
                         temp.Load();
 
                         level.Add(temp);
+
+                        ProjectileManager.AddTargetToList(temp);
                     }
                 }
             }

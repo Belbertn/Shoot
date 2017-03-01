@@ -7,7 +7,7 @@ namespace Shoot
 {
     public class ProjectileManager
     {
-        private List<IShootable> targets = new List<IShootable>();
+        private static List<IShootable> targets = new List<IShootable>();
         private static List<Projectile> projectiles = new List<Projectile>();
 
         private SpriteBatch spriteBatch;
@@ -50,7 +50,7 @@ namespace Shoot
             projectiles.Add(temp);
         }
 
-        public void AddTargetToList(IShootable target)
+        public static void AddTargetToList(IShootable target)
         {
             targets.Add(target);
         } 
