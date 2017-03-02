@@ -35,7 +35,14 @@ namespace Shoot
 
         public void Update(GameTime gameTime)
         {
+            Input.Update();
+
             gameState.Update(gameTime);
+        }
+
+        public void LateUpdate()
+        {
+            Input.LateUpdate();
         }
 
         public void Draw()
