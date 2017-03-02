@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -60,6 +59,8 @@ namespace Shoot
             }
 
             projectileManager.Update(gameTime);
+
+            CheckForDeath();
         }
 
         public void Draw()
@@ -80,6 +81,17 @@ namespace Shoot
             Player temp = new Player();
             Entities.Add(temp);
             ProjectileManager.AddTargetToList(temp);
+        }
+
+        private void CheckForDeath()
+        {
+            for (int i = 0; i < Entities.Count; i++)
+            {
+                if (Entities[i].Health <= 0)
+                {
+                    Entities.Remove(Entities[i]);
+                }
+            }
         }
     }
 }

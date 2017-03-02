@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -22,6 +22,9 @@ namespace Shoot
             {
                 proj.Update(gameTime);
             }
+
+            CollisionCheck();
+            RemoveDestroyedProjectiles();
         }
 
         public void Draw()
@@ -36,7 +39,14 @@ namespace Shoot
         {
             foreach (Projectile proj in projectiles)
             {
-
+                foreach (IShootable target in targets)
+                {
+                    if (proj.hitbox.Intersects(target.Hitbox) && !proj.isDestroyed)
+                    {
+                        target.TakeDamage(proj.Damage);
+                        proj.isDestroyed = true;
+                    }
+                }
             }
         }
 
@@ -54,5 +64,16 @@ namespace Shoot
         {
             targets.Add(target);
         } 
+
+        private void RemoveDestroyedProjectiles()
+        {
+            for (int i = 0; i < projectiles.Count; i++)
+            {
+                if (projectiles[i].isDestroyed)
+                {
+                    projectiles.Remove(projectiles[i]);
+                }
+            }
+        }
     }
 }

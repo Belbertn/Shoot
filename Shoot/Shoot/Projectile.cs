@@ -15,13 +15,15 @@ namespace Shoot
 
         private Texture2D texture;
 
+        public bool isDestroyed = false;
+
         public void Initialize(Rectangle HitBox, Vector2 Position, Vector2 Direction, float Speed, int Damage)
         {
             hitbox = HitBox;
             this.Position = Position;
             
             velocity = new Vector2();
-            velocity += Direction * Speed;
+            velocity += Direction * Speed * Speed;
 
             this.Damage = Damage;
 

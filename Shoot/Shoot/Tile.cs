@@ -9,6 +9,7 @@ namespace Shoot
         public Vector2 Position { get; set; }
         public Texture2D Texture { get; set; }
         public Rectangle Hitbox { get; set; }
+        public int Health { get; set; }
 
         public CollisionObject colObject { get; set; }
 

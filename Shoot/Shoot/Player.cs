@@ -15,7 +15,7 @@ namespace Shoot
 
         private CollisionActor actor;
 
-        private int health = 100;
+        public int Health { get; set; }
 
         public void Load()
         {       
@@ -24,6 +24,8 @@ namespace Shoot
             Position = new Vector2();
 
             ColliderSetUp();
+
+            Health = 100;
         }
 
         public void Update(GameTime gameTime)
@@ -41,6 +43,32 @@ namespace Shoot
         }
 
         private void Input()
+        {
+            if(!GamePad.GetState(PlayerIndex.One).IsConnected)
+            {
+                KeyboardInput();
+            }
+        }
+
+        private void ColliderSetUp()
+        {
+            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height);
+
+            actor = new CollisionActor();
+            actor.Position = Position;
+            actor.Width = texture.Width;
+            actor.Height = texture.Height;
+
+            CollisionWorld.AddActor(actor);
+        }
+
+        public void TakeDamage(int Damage)
+        {
+            Console.WriteLine(Health);
+            Health -= Damage;
+        }
+
+        private void KeyboardInput()
         {
             KeyboardState keyState = Keyboard.GetState();
 
@@ -64,25 +92,8 @@ namespace Shoot
 
             if (keyState.IsKeyDown(Keys.Space))
             {
-                ProjectileManager.AddProjectile(Position, new Vector2(1, 0), 4, 10);
+                ProjectileManager.AddProjectile(new Vector2(Position.X + 50, Position.Y + 15), new Vector2(1, 0), 10, 10);
             }
-        }
-
-        private void ColliderSetUp()
-        {
-            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height);
-
-            actor = new CollisionActor();
-            actor.Position = Position;
-            actor.Width = texture.Width;
-            actor.Height = texture.Height;
-
-            CollisionWorld.AddActor(actor);
-        }
-
-        public void TakeDamage(int Damage)
-        {
-            health -= Damage;
         }
     }
 }
