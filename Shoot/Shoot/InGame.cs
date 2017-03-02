@@ -15,9 +15,12 @@ namespace Shoot
 
         public List<IEntity> Entities { get; private set; }
 
-        public void Initialize(ContentLoader loader, SpriteBatch Batch)
+        public InputManager Input { get; private set; }
+
+        public void Initialize(ContentLoader loader, InputManager inputManager, SpriteBatch Batch)
         {
             Loader = loader;
+            Input = inputManager;
             spriteBatch = Batch;
 
             World = new CollisionWorld();

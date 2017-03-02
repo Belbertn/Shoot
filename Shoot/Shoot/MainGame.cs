@@ -8,15 +8,19 @@ namespace Shoot
     {   
         public ContentLoader Loader { get; private set; }
 
+        public InputManager Input { get; private set;}
+
         public IGameState gameState { get; private set; }
 
         public void Initialize(ContentManager content, SpriteBatch spriteBatch)
         {
             Loader = new ContentLoader();
             Loader.Initialize(content);
+
+            Input = new InputManager();
             
             gameState = new InGame();
-            gameState.Initialize(Loader, spriteBatch);
+            gameState.Initialize(Loader, Input, spriteBatch);
         }
 
         public void Load()

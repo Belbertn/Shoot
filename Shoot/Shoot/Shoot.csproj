@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="InputManager.cs" />
     <Compile Include="IShootable.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="ProjectileManager.cs" />

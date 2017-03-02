@@ -7,8 +7,9 @@ namespace Shoot
     public interface IGameState
     {
         ContentLoader Loader { get; }
+        InputManager Input { get; }
         List<IEntity> Entities { get; }
-        void Initialize(ContentLoader loader, SpriteBatch SpriteBatch);
+        void Initialize(ContentLoader loader, InputManager inputManager, SpriteBatch SpriteBatch);
         void Load();
         void Update(GameTime gameTime);
         void Draw();
