@@ -18,6 +18,7 @@ namespace Shoot
             Loader.Initialize(content);
 
             Input = new InputManager();
+            Input.Initialize();
             
             gameState = new InGame();
             gameState.Initialize(Loader, Input, spriteBatch);
