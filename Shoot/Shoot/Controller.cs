@@ -7,25 +7,21 @@ namespace Shoot
     {
         public PlayerIndex Index { get; private set; }
 
-        private GamePadState currentGamePadState;
-        private GamePadState previousGamePadState;
+        public GamePadState currentGamePadState { get; private set; }
+        public GamePadState previousGamePadState { get; private set; }
 
         public Controller(PlayerIndex index)
         {
             Index = index;
 
             currentGamePadState = GamePad.GetState(Index);
-            previousGamePadState = currentGamePadState;
+            previousGamePadState = GamePad.GetState(Index);
         }
 
         public void Update()
         {
-            currentGamePadState = GamePad.GetState(Index);
-        }
-
-        public void LateUpdate()
-        {
             previousGamePadState = currentGamePadState;
+            currentGamePadState = GamePad.GetState(Index);
         }
     }
 }

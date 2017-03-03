@@ -76,8 +76,6 @@ namespace Shoot
             mainGame.Update(gameTime);
 
             base.Update(gameTime);
-            
-            mainGame.LateUpdate();
         }
 
         /// <summary>

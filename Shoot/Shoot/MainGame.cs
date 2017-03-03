@@ -38,12 +38,7 @@ namespace Shoot
         {
             Input.Update();
 
-            gameState.Update(gameTime);
-        }
-
-        public void LateUpdate()
-        {
-            Input.LateUpdate();
+            gameState.Update(gameTime);         
         }
 
         public void Draw()
