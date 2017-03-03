@@ -1,2 +1,10 @@
-Remember:
+TODO:
+Offset where projectiles are fired from the player
+Make sure the player cant shoot himself
+
+
+
+
+Completed:
 INputmanager auto adds new controllers even mid game. this way we can have players join mid game
+

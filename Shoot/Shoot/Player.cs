@@ -10,12 +10,22 @@ namespace Shoot
         public Vector2 Position { get; set; }
         public Rectangle Hitbox { get; set; }
 
+        private float angle = 0;
+        private Vector2 origin;
+
         private const float SPEED = 40;
         private Texture2D texture;
 
         private CollisionActor actor;
 
         public int Health { get; set; }
+
+        private PlayerIndex index;
+
+        public Player(PlayerIndex Index)
+        {
+            index = Index;
+        }
 
         public void Load()
         {       
@@ -26,6 +36,8 @@ namespace Shoot
             ColliderSetUp();
 
             Health = 100;
+
+            origin = new Vector2(texture.Width/2, texture.Height/2);
         }
 
         public void Update(GameTime gameTime)
@@ -39,14 +51,18 @@ namespace Shoot
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Position, Color.White);
+            spriteBatch.Draw(texture, Position, null, Color.White, angle, origin, 1f, SpriteEffects.None, 1);
         }
 
         private void Input()
         {
-            if(!GamePad.GetState(PlayerIndex.One).IsConnected)
+            if(!GamePad.GetState(index).IsConnected)
             {
                 KeyboardInput();
+            }
+            else
+            {
+                GamePadInput();
             }
         }
 
@@ -66,6 +82,26 @@ namespace Shoot
         {
             Console.WriteLine(Health);
             Health -= Damage;
+        }
+
+        private void GamePadInput()
+        {
+            Vector2 direction = InputManager.GetLeftThumbStick(index);
+            direction.Y *= -1;
+            actor.AddAcceleration(direction, SPEED);
+
+            if (InputManager.GetRightThumbStick(index) != new Vector2(0, 0))
+            {
+                Vector2 angleInput = InputManager.GetRightThumbStick(index);
+                angle = (float)Math.Atan2(angleInput.X, angleInput.Y);
+            }
+
+            if (InputManager.GetButtonDown(index, Buttons.RightTrigger))
+            {
+                Vector2 projectileDir = InputManager.GetRightThumbStick(index);
+                projectileDir.Y *= -1;
+                ProjectileManager.AddProjectile(new Vector2(Position.X + projectileDir.X, Position.Y + projectileDir.Y), projectileDir, 10, 10);
+            }
         }
 
         private void KeyboardInput()

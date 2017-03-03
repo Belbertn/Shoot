@@ -81,7 +81,7 @@ namespace Shoot
 
         private void SetUpPlayers()
         {
-            Player temp = new Player();
+            Player temp = new Player(PlayerIndex.One);
             Entities.Add(temp);
             ProjectileManager.AddTargetToList(temp);
         }

@@ -15,14 +15,14 @@ namespace Shoot
 
         public void Initialize()
         {
-            Rectangle = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
+            Rectangle = new Rectangle((int)Position.X - Width / 2, (int)Position.Y - Height / 2, Width, Height);
         }
 
         public void Update(GameTime gameTime)
         {
             Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             
-            Rectangle = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
+            Rectangle = new Rectangle((int)Position.X - Width / 2, (int)Position.Y - Height / 2, Width, Height);
 
             Velocity *= FRICTION;
         }

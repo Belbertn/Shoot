@@ -22,7 +22,7 @@ namespace Shoot
                 proj.Update(gameTime);
             }
 
-            CollisionCheck();
+            //CollisionCheck();
             RemoveDestroyedProjectiles();
         }
 
