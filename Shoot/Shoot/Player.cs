@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -8,10 +9,13 @@ namespace Shoot
     public class Player : IEntity, IShootable
     {
         public Vector2 Position { get; set; }
+
         public Rectangle Hitbox { get; set; }
+        public ShootableLayer Layer { get; private set; }
 
         private float angle = 0;
         private Vector2 origin;
+        Vector2 aimDirection = new Vector2();
 
         private const float SPEED = 40;
         private Texture2D texture;
@@ -25,12 +29,14 @@ namespace Shoot
         public Player(PlayerIndex Index)
         {
             index = Index;
+
+            Layer = (ShootableLayer)Index;
         }
 
         public void Load()
         {       
             texture = ContentLoader.GetSprite("hitman1_hold");
-
+            
             Position = new Vector2();
 
             ColliderSetUp();
@@ -98,9 +104,17 @@ namespace Shoot
 
             if (InputManager.GetButtonDown(index, Buttons.RightTrigger))
             {
-                Vector2 projectileDir = InputManager.GetRightThumbStick(index);
-                projectileDir.Y *= -1;
-                ProjectileManager.AddProjectile(new Vector2(Position.X + projectileDir.X, Position.Y + projectileDir.Y), projectileDir, 10, 10);
+                Vector2 firePoint = new Vector2();
+                firePoint.X = (float)Math.Cos(angle -90) * 25 + Position.X;
+                firePoint.Y = (float)Math.Sin(angle -90) * 25 + Position.Y;
+
+                if (InputManager.GetRightThumbStick(index) != new Vector2(0, 0))
+                {
+                    aimDirection = InputManager.GetRightThumbStick(index);
+                    aimDirection.Y *= -1;
+                }
+
+                ProjectileManager.AddProjectile(firePoint, Vector2.Normalize(aimDirection), 10, 10, Layer);
             }
         }
 
@@ -128,7 +142,7 @@ namespace Shoot
 
             if (keyState.IsKeyDown(Keys.Space))
             {
-                ProjectileManager.AddProjectile(new Vector2(Position.X + 50, Position.Y + 15), new Vector2(1, 0), 10, 10);
+                ProjectileManager.AddProjectile(Position, new Vector2(1, 0), 10, 10, Layer);
             }
         }
     }

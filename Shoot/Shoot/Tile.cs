@@ -9,6 +9,8 @@ namespace Shoot
         public Vector2 Position { get; set; }
         public Texture2D Texture { get; set; }
         public Rectangle Hitbox { get; set; }
+        public ShootableLayer Layer { get; private set; }
+
         public int Health { get; set; }
 
         public CollisionObject colObject { get; set; }
@@ -19,6 +21,8 @@ namespace Shoot
             colObject.Position = Position;
             colObject.Width = Texture.Width;
             colObject.Height = Texture.Height;
+
+            Layer = ShootableLayer.Five;
 
             CollisionWorld.AddObject(colObject);
 

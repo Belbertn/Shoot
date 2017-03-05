@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,7 +23,7 @@ namespace Shoot
                 proj.Update(gameTime);
             }
 
-            //CollisionCheck();
+            CollisionCheck();
             RemoveDestroyedProjectiles();
         }
 
@@ -42,19 +43,22 @@ namespace Shoot
                 {
                     if (proj.hitbox.Intersects(target.Hitbox) && !proj.isDestroyed)
                     {
-                        target.TakeDamage(proj.Damage);
-                        proj.isDestroyed = true;
+                        if (proj.Layer != target.Layer)
+                        {
+                            target.TakeDamage(proj.Damage);
+                            proj.isDestroyed = true;
+                        }
                     }
                 }
             }
         }
 
-        public static void AddProjectile(Vector2 Position, Vector2 Direction, float Speed, int Damage)
+        public static void AddProjectile(Vector2 Position, Vector2 Direction, float Speed, int Damage, ShootableLayer layer)
         {
             Rectangle tempHitbox = new Rectangle((int)Position.X, (int)Position.Y, 2, 2);
 
             Projectile temp = new Projectile();
-            temp.Initialize(tempHitbox, Position, Direction, Speed, Damage);
+            temp.Initialize(tempHitbox, Position, Direction, Speed, Damage, layer);
 
             projectiles.Add(temp);
         }
