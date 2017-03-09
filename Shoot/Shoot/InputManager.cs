@@ -8,6 +8,8 @@ namespace Shoot
     {
         private static Dictionary<PlayerIndex,Controller> controllers;
 
+        public static int NumberOfConnectedControllers { get; private set; }
+
         public void Initialize()
         {
             controllers = new Dictionary<PlayerIndex,Controller>();
@@ -19,6 +21,8 @@ namespace Shoot
                     controllers[i] = new Controller(i);
                 }
             }
+
+            NumberOfConnectedControllers = controllers.Count;
         }
 
         public void Update()
@@ -29,6 +33,8 @@ namespace Shoot
             }
             
             CheckConnectionStatus();
+
+            NumberOfConnectedControllers = controllers.Count;
         }
 
         private void CheckConnectionStatus()
@@ -59,6 +65,18 @@ namespace Shoot
                 {
                     controllers.Remove(i);
                 }
+            }
+        }
+
+        public static bool CheckConnection(PlayerIndex index)
+        {
+            if(controllers.ContainsKey(index))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

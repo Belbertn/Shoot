@@ -14,14 +14,16 @@ namespace Shoot
         {
             Index = index;
 
-            currentGamePadState = GamePad.GetState(Index);
-            previousGamePadState = GamePad.GetState(Index);
+            
+
+            currentGamePadState = GamePad.GetState(Index, GamePadDeadZone.Circular);
+            previousGamePadState = GamePad.GetState(Index, GamePadDeadZone.Circular);
         }
 
         public void Update()
         {
             previousGamePadState = currentGamePadState;
-            currentGamePadState = GamePad.GetState(Index);
+            currentGamePadState = GamePad.GetState(Index, GamePadDeadZone.Circular);
         }
     }
 }

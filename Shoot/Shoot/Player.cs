@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Shoot
 {
-    public class Player : IEntity, IShootable
+    class Player : IEntity, IShootable
     {
         public Vector2 Position { get; set; }
 

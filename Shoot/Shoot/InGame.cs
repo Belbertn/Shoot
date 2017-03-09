@@ -12,6 +12,7 @@ namespace Shoot
         public CollisionWorld World { get; private set; }
 
         private ProjectileManager projectileManager = new ProjectileManager();
+        private PlayerManager playerManager = new PlayerManager();
 
         public List<IEntity> Entities { get; private set; }
 
@@ -33,7 +34,7 @@ namespace Shoot
 
             Entities = new List<IEntity>();
 
-            SetUpPlayers();
+            playerManager.Initialize(this);
         }
 
         public void Load()
@@ -63,7 +64,9 @@ namespace Shoot
 
             projectileManager.Update(gameTime);
 
-            CheckForDeath();
+            playerManager.Update();
+
+            //CheckForDeath();
         }
 
         public void Draw()
@@ -79,22 +82,15 @@ namespace Shoot
             spriteBatch.End();
         }
 
-        private void SetUpPlayers()
-        {
-            Player temp = new Player(PlayerIndex.One);
-            Entities.Add(temp);
-            ProjectileManager.AddTargetToList(temp);
-        }
-
-        private void CheckForDeath()
-        {
-            for (int i = 0; i < Entities.Count; i++)
-            {
-                if (Entities[i].Health <= 0)
-                {
-                    Entities.Remove(Entities[i]);
-                }
-            }
-        }
+        //private void CheckForDeath()
+        //{
+        //    for (int i = 0; i < Entities.Count; i++)
+        //    {
+        //        if (Entities[i].Health <= 0)
+        //        {
+        //            Entities.Remove(Entities[i]);
+        //        }
+        //    }
+        //}
     }
 }
