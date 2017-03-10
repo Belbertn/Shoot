@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,11 +34,24 @@ namespace Shoot
                 {
                     Player temp = new Player(i);
                     players.Add(i, temp);
+                    temp.Load();
                     game.Entities.Add(temp);
                 }
                 else if (!InputManager.CheckConnection(i) && players.ContainsKey(i))
                 {
                     players.Remove(i);
+
+                    for (int j = 0; j < game.Entities.Count; j++)
+                    {
+                        if (game.Entities[j] is Player)
+                        {
+                            Player temp = (Player)game.Entities[j];
+                            if(temp.GetPlayerIndex() == i)
+                            {
+                                game.Entities.Remove(game.Entities[j]);
+                            }
+                        }
+                    }
                 }
             }
         }

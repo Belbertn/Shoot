@@ -90,6 +90,11 @@ namespace Shoot
             Health -= Damage;
         }
 
+        public PlayerIndex GetPlayerIndex()
+        {
+            return index;
+        }
+
         private void GamePadInput()
         {
             Vector2 direction = InputManager.GetLeftThumbStick(index);
