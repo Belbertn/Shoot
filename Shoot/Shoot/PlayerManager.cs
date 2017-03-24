@@ -38,6 +38,7 @@ namespace Shoot
                 else if (!InputManager.CheckConnection(i) && players.ContainsKey(i))
                 {
                     players.Remove(i);
+                    game.Entities.Remove(players[i]);
                 }
             }
         }
