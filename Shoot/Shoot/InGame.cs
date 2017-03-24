@@ -41,10 +41,10 @@ namespace Shoot
         {
             Loader.LoadAssets(AssetList.Level1);
 
+            Level.Load();
+
             World.Load();
 
-            Level.Load();
-            
             foreach (IEntity entity in Entities)
             {
                 entity.Load();

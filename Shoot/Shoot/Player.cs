@@ -82,12 +82,18 @@ namespace Shoot
             actor.Height = texture.Height;
 
             CollisionWorld.AddActor(actor);
+
+            ProjectileManager.AddTargetToList(this);
         }
 
         public void TakeDamage(int Damage)
         {
-            Console.WriteLine(Health);
             Health -= Damage;
+        }
+
+        public PlayerIndex GetPlayerIndex()
+        {
+            return index;
         }
 
         private void GamePadInput()

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace Shoot
                 {
                     Player temp = new Player(i);
                     players.Add(i, temp);
+                    temp.Load();
                     game.Entities.Add(temp);
                 }
                 else if (!InputManager.CheckConnection(i) && players.ContainsKey(i))
