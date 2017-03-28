@@ -26,11 +26,16 @@ namespace Shoot
 
         private PlayerIndex index;
 
+        private CountDownTimer shootDelay;
+        private const float DELAY = 2F;
+
         public Player(PlayerIndex Index)
         {
             index = Index;
 
             Layer = (ShootableLayer)Index;
+
+            shootDelay = new CountDownTimer(DELAY);
         }
 
         public void Load()
@@ -53,6 +58,8 @@ namespace Shoot
             Hitbox = new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height);
 
             Input();
+
+            shootDelay.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -108,7 +115,7 @@ namespace Shoot
                 angle = (float)Math.Atan2(angleInput.X, angleInput.Y);
             }
 
-            if (InputManager.GetButtonDown(index, Buttons.RightTrigger))
+            if (InputManager.GetButtonDown(index, Buttons.RightTrigger) && shootDelay.Delay <= 0)
             {
                 Vector2 firePoint = new Vector2();
                 firePoint.X = (float)Math.Cos(angle -90) * 25 + Position.X;
@@ -121,6 +128,8 @@ namespace Shoot
                 }
 
                 ProjectileManager.AddProjectile(firePoint, Vector2.Normalize(aimDirection), 10, 10, Layer);
+
+                shootDelay = new CountDownTimer(DELAY);
             }
         }
 
@@ -128,7 +137,7 @@ namespace Shoot
         {
             KeyboardState keyState = Keyboard.GetState();
 
-            if (keyState.IsKeyDown(Keys.W))
+            if (keyState.IsKeyDown(Keys.W)) 
             {
                 actor.AddAcceleration(new Vector2(0, -1), SPEED);
             }
