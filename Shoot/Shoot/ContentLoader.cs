@@ -49,8 +49,13 @@ namespace Shoot
             }
             else
             {
-                throw new System.ArgumentException( name + " Sprite does not exist");
+                throw new System.ArgumentException(name + " Sprite does not exist");
             }     
+        }
+
+        public void GetSpriteContaining(string partialAssetName)
+        {
+
         }
 
         private string[] ReadFile(string TextFile)

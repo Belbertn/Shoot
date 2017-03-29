@@ -8,9 +8,34 @@ namespace Shoot
             {
                 return "Level1_Texture_List.txt";
             }
-            set
+        }
+
+        public static string Player1
+        {
+            get
             {
-                throw new System.FieldAccessException();
+                return "Player1_Texture_List.txt";
+            }
+        }
+        public static string Player2
+        {
+            get
+            {
+                return "Player2_Texture_List.txt";
+            }
+        }
+        public static string Player3
+        {
+            get
+            {
+                return "Player3_Texture_List.txt";
+            }
+        }
+        public static string Player4
+        {
+            get
+            {
+                return "Player4_Texture_List.txt";
             }
         }
     }

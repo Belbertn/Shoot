@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Animation.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="IShootable.cs" />
@@ -47,7 +48,6 @@
     <Compile Include="CollisionObject.cs" />
     <Compile Include="CollisionActor.cs" />
     <Compile Include="CollisionWorld.cs" />
-    <Compile Include="StopWatch.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Player.cs" />
@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
+    <Content Include="Notes.txt" />
     <Content Include="OpenTK.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

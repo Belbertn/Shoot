@@ -1,10 +1,13 @@
 TODO:
-Offset where projectiles are fired from the player
-Make sure the player cant shoot himself
-
-
+* Seperate asset TXT files for each player.
+* Player will not handle its own texture. Instead it will have an animation class that will handle it.
+* Animation class can ask the contentloader for a list of the assetnames pertaining to the player the animation class belongs to.
+* Animation class can then use that list to get all the relevant textures and store them in by animation category
+* CONTENTLOADER: Maybe have different contentmanagers for map and for players. Not essential but good practice
 
 
 Completed:
 INputmanager auto adds new controllers even mid game. this way we can have players join mid game
+Offset where projectiles are fired from the player
+Make sure the player cant shoot himself
 

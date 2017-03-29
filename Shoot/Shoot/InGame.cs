@@ -34,7 +34,7 @@ namespace Shoot
 
             Entities = new List<IEntity>();
 
-            playerManager.Initialize(this);
+            playerManager.Initialize(this, Loader);
         }
 
         public void Load()
