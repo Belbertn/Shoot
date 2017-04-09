@@ -53,9 +53,9 @@ namespace Shoot
             }     
         }
 
-        public void GetSpriteContaining(string partialAssetName)
+        public static string[] GetAssetFile(string fileName)
         {
-
+            return File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName));
         }
 
         private string[] ReadFile(string TextFile)
@@ -69,7 +69,10 @@ namespace Shoot
         {
             for (int i = 0; i < lines.Length; i++)
             {
-                Sprites.Add(lines[i], content.Load<Texture2D>(lines[i]));
+                if(!lines[i].Contains("Animation"))
+                {
+                    Sprites.Add(lines[i], content.Load<Texture2D>(lines[i]));
+                }
             }
         }
 

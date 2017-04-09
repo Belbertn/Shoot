@@ -8,5 +8,16 @@ namespace Shoot
 {
     class Animation
     {
+        private string[] assetList;
+
+        public Animation(string assetFile)
+        {
+            assetList = ContentLoader.GetAssetFile(assetFile);
+        }
+
+        private void CreateAnimationSequences()
+        {
+
+        }
     }
 }

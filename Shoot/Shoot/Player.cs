@@ -10,17 +10,20 @@ namespace Shoot
     class Player : IEntity, IShootable
     {
         public Vector2 Position { get; set; }
-
-        public Rectangle Hitbox { get; set; }
-        public ShootableLayer Layer { get; private set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
 
         private float angle = 0;
         private Vector2 origin;
         Vector2 aimDirection = new Vector2();
 
         private const float SPEED = 40;
-        private Texture2D texture;
 
+        public string AssetFile { get; set; }
+        private Animation animator;
+
+        public Rectangle Hitbox { get; set; }
+        public ShootableLayer Layer { get; private set; }
         private CollisionActor actor;
 
         public int Health { get; set; }
@@ -41,22 +44,22 @@ namespace Shoot
 
         public void Load()
         {       
-            texture = ContentLoader.GetSprite("hitman1_hold");
-            
             Position = new Vector2();
+            Width = 50;
+            Height = 50;
 
             ColliderSetUp();
 
             Health = 100;
 
-            origin = new Vector2(texture.Width/2, texture.Height/2);
+            origin = new Vector2(Width/2, Height/2);
         }
 
         public void Update(GameTime gameTime)
         {
             Position = actor.Position;
 
-            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height);
+            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
 
             Input();
 
@@ -82,12 +85,12 @@ namespace Shoot
 
         private void ColliderSetUp()
         {
-            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height);
+            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
 
             actor = new CollisionActor();
             actor.Position = Position;
-            actor.Width = texture.Width;
-            actor.Height = texture.Height;
+            actor.Width = Width;
+            actor.Height = Height;
 
             CollisionWorld.AddActor(actor);
 

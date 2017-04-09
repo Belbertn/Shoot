@@ -53,15 +53,19 @@ namespace Shoot
                 {
                     case PlayerIndex.One:
                         loader.LoadAssets(AssetList.Player1);
+                        player.AssetFile = AssetList.Player1;
                         break;
                     case PlayerIndex.Two:
                         loader.LoadAssets(AssetList.Player2);
+                        player.AssetFile = AssetList.Player2;
                         break;
                     case PlayerIndex.Three:
                         loader.LoadAssets(AssetList.Player3);
+                        player.AssetFile = AssetList.Player3;
                         break;
                     case PlayerIndex.Four:
                         loader.LoadAssets(AssetList.Player4);
+                        player.AssetFile = AssetList.Player4;
                         break;
                 }
 

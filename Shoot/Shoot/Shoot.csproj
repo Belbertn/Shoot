@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="AnimationSequence.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="IShootable.cs" />
