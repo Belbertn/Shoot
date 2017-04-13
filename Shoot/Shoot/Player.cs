@@ -68,7 +68,7 @@ namespace Shoot
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Position, null, Color.White, angle, origin, 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(animator.GetFrame(), Position, null, Color.White, angle, origin, 1f, SpriteEffects.None, 1);
         }
 
         private void Input()
