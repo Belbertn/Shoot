@@ -13,17 +13,34 @@ namespace Shoot
     {
         private Dictionary<int, Texture2D> sequence = new Dictionary<int, Texture2D>();
 
-        public AnimationSequence(string[] frameList)
+        private int currentFrame;
+
+        public AnimationSequence(List<string> frameList)
         {
             Getframes(frameList);
         }
 
-        private void Getframes(string[] frameList)
+        private void Getframes(List<string> frameList)
         {
-            for (int i = 0; i < frameList.Length; i++)
+            int counter = 0;
+            foreach (string str in frameList)
             {
+                Texture2D temp = ContentLoader.GetSprite(str);
 
+                sequence[counter] = temp;
+
+                counter++;
             }
+        }
+
+        public Texture2D GetCurrentFrame()
+        {
+
+        }
+
+        public void AdvanceFrame()
+        {
+
         }
     }
 }

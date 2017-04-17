@@ -63,6 +63,8 @@ namespace Shoot
 
             Input();
 
+            animator.Update(gameTime);
+
             shootDelay.Update(gameTime);
         }
 

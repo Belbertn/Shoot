@@ -18,18 +18,11 @@ namespace Shoot
         public Animation(string assetFile)
         {
             assetList = ContentLoader.GetAssetFile(assetFile);
+
+            CreateAnimationSequences(0);
         }
 
-        private void CreateAnimationSequences()
-        {
-            for(int i = 0; i < assetList.Length; i++)
-            {
-                if(assetList[i].Contains("animation"))
-                {
-                    string[] temp = assetList[i].Split();
-                }
-            }
-        }
+        
 
         public void Update(GameTime gameTime)
         {
@@ -39,6 +32,38 @@ namespace Shoot
         public Texture2D GetFrame()
         {
 
+        }
+
+        private void CreateAnimationSequences(int startingPointInFile)
+        {
+            for (int i = startingPointInFile; i < assetList.Length; i++)
+            {
+                if (assetList[i].Contains("animation"))
+                {
+                    if (!animations.ContainsKey(assetList[i]))
+                    {
+                        List<string> temp = new List<string>();
+                        for (int j = i + 1; j < assetList.Length; j++)
+                        {
+                            if (!assetList[j].Contains("animation"))
+                            {
+                                temp.Add(assetList[j]);
+                            }
+                            else if (assetList[j].Contains("animation"))
+                            {
+                                CreateNewAnimationSequence(assetList[i], temp);
+                                CreateAnimationSequences(j);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CreateNewAnimationSequence(string name, List<string> sequence)
+        {
+            AnimationSequence temp = new AnimationSequence(sequence);
+            animations.Add(name, temp);
         }
     }
 }
