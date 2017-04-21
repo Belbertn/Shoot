@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace Shoot
 {
@@ -69,8 +70,9 @@ namespace Shoot
         {
             for (int i = 0; i < lines.Length; i++)
             {
-                if(!lines[i].Contains("Animation"))
+                if(!lines[i].Contains("animation") && !Sprites.ContainsKey(lines[i]))
                 {
+                    Debug.WriteLine(lines[i]);
                     Sprites.Add(lines[i], content.Load<Texture2D>(lines[i]));
                 }
             }

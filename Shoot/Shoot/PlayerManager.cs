@@ -21,6 +21,11 @@ namespace Shoot
             loader = Loader;
 
             players = new Dictionary<PlayerIndex, Player>();
+
+            loader.LoadAssets(AssetList.Player1);
+            loader.LoadAssets(AssetList.Player2);
+            loader.LoadAssets(AssetList.Player3);
+            loader.LoadAssets(AssetList.Player4);
         }
 
         public void Update()
@@ -52,19 +57,15 @@ namespace Shoot
                 switch(index)
                 {
                     case PlayerIndex.One:
-                        loader.LoadAssets(AssetList.Player1);
                         player.AssetFile = AssetList.Player1;
                         break;
                     case PlayerIndex.Two:
-                        loader.LoadAssets(AssetList.Player2);
                         player.AssetFile = AssetList.Player2;
                         break;
                     case PlayerIndex.Three:
-                        loader.LoadAssets(AssetList.Player3);
                         player.AssetFile = AssetList.Player3;
                         break;
                     case PlayerIndex.Four:
-                        loader.LoadAssets(AssetList.Player4);
                         player.AssetFile = AssetList.Player4;
                         break;
                 }

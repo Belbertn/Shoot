@@ -36,8 +36,11 @@ namespace Shoot
         public Player(PlayerIndex Index)
         {
             index = Index;
-
+            
             Layer = (ShootableLayer)Index;
+
+            animator = new Animation(AssetList.Player1, true);
+            animator.SetAnimation("test");
 
             shootDelay = new CountDownTimer(DELAY);
         }
@@ -123,6 +126,7 @@ namespace Shoot
 
             if (InputManager.GetButtonDown(index, Buttons.RightTrigger) && shootDelay.Delay <= 0)
             {
+                animator.SetAnimation("test");
                 Vector2 firePoint = new Vector2();
                 firePoint.X = (float)Math.Cos(angle -90) * 25 + Position.X;
                 firePoint.Y = (float)Math.Sin(angle -90) * 25 + Position.Y;
