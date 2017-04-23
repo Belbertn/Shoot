@@ -72,7 +72,6 @@ namespace Shoot
             {
                 if(!lines[i].Contains("animation") && !Sprites.ContainsKey(lines[i]))
                 {
-                    Debug.WriteLine(lines[i]);
                     Sprites.Add(lines[i], content.Load<Texture2D>(lines[i]));
                 }
             }
