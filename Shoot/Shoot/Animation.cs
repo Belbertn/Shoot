@@ -63,31 +63,7 @@ namespace Shoot
 
         private void CreateAnimationSequences(int startingPointInFile)
         {
-            for (int i = startingPointInFile; i < assetList.Length; i++)
-            {
-                if (assetList[i].Contains("animation"))
-                {
-                    if (!animations.ContainsKey(assetList[i]))
-                    {
-                        List<string> temp = new List<string>();
-                        string[] animationName = new string[2];
-                        for (int j = i; j < assetList.Length; j++)
-                        {
-                            if (!assetList[j].Contains("animation"))
-                            { 
-                                temp.Add(assetList[j]);
-                            }
-                            else if (assetList[j].Contains("animation"))
-                            {
-                                animationName = assetList[i].Split('_');
-                                
-                                CreateAnimationSequences(j + 1);
-                            }
-                        }
-                        CreateNewAnimationSequence(animationName[0], temp);
-                    }
-                }
-            }
+        
         }
 
         private void CreateNewAnimationSequence(string name, List<string> sequence)
